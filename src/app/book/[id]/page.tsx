@@ -7,9 +7,17 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 //정적으로 빌드타임에 만들어서 조금이나마 속도 향상
-export function generateStaticParams() {
-  return [{ id: "1" }];
+
+export async function generateStaticParams() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`);
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  const books: BookData[] = await response.json();
+
+  return books.map((book) => ({ id: book.id }));
 }
+
 
 async function BookDetail({ bookId }: { bookId: string }) {
 

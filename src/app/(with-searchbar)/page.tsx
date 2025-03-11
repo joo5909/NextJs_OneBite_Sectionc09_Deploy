@@ -2,7 +2,6 @@ import BookItem from "@/components/book-item";
 import style from "./page.module.css";
 import { BookData } from "@/types";
 import { Suspense } from "react";
-import BookItemSkeleton from "@/components/skeleton/book-item-skeleton";
 import BookListSkeleton from "@/components/skeleton/book-list-skeleton";
 import { Metadata } from "next";
 
@@ -54,21 +53,21 @@ async function RecoBooks() {
   );
 }
 
-export const metadata : Metadata = {
+export const metadata: Metadata = {
   title: "도서 목록",
   description: "등록된 모든 도서 목록을 확인할 수 있습니다.",
   openGraph: {
     title: "도서 목록",
     description: "등록된 모든 도서 목록을 확인할 수 있습니다.",
     images: ["/thumbnail.png"]
-  }  
+  }
 }
 
 export default function Home() {
   return (
     <div className={style.container}>
       <section>
-        <h3>지금 추천하는 도서</h3>        
+        <h3>지금 추천하는 도서</h3>
         <Suspense fallback={<BookListSkeleton count={3} />}>
           <RecoBooks />
         </Suspense>
