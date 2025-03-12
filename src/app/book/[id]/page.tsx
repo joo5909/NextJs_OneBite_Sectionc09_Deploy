@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 //정적으로 빌드타임에 만들어서 조금이나마 속도 향상
-
+//서버 ENVIRONMENT 에 URL 추가해줘야함 
 export async function generateStaticParams() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`);
   if (!response.ok) {
