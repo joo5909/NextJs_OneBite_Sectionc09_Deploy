@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   }
   const books: BookData[] = await response.json();
 
-  return books.map((book) => ({ id: book.id }));
+  return books.map((book) => ({ id: book.id?.toString() }));
 }
 
 
